@@ -1,10 +1,15 @@
+import {Box,Heading,Text} from "@chakra-ui/react"
+
 export default function Home(){
   return(
-    <main>
-      <h1>LexFiscal</h1>
-      <p>Frontend funcionando</p>
-    </main>
+    <Box p={6}>
+      <Heading>LexFiscal</Heading>
+      <Text mt={2}>
+        Chakra está funcionando correctamente.
+      </Text>
+    </Box>
   )
 }
+
 
 
