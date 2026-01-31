@@ -1,6 +1,12 @@
 import {Heading,Text,Stack} from "@chakra-ui/react"
 import Container from "@/components/ui/Container"
 
+export const metadata={
+  title:"Tributos | LexFiscal",
+  description:"Listado descriptivo de tributos nacionales en Colombia"
+}
+
+
 export default function HomePage(){
   return(
     <Container>

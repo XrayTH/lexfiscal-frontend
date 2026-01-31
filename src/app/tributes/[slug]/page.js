@@ -17,3 +17,20 @@ export default async function TributeDetailPage({params}){
     </Container>
   )
 }
+
+export async function generateMetadata({params}){
+  const {slug}=await params
+  const tribute=await getTributeBySlug(slug)
+
+  if(!tribute){
+    return{
+      title:"Tributo no encontrado | LexFiscal"
+    }
+  }
+
+  return{
+    title:`${tribute.name} | LexFiscal`,
+    description:tribute.technicalSheet.definition
+  }
+}
+

@@ -3,6 +3,11 @@ import Container from "@/components/ui/Container"
 import {getTributes} from "@/lib/api"
 import TributeCard from "@/components/tributes/TributeCard"
 
+export const metadata={
+  title:"Tributos | LexFiscal",
+  description:"Listado descriptivo de tributos nacionales en Colombia"
+}
+
 export default async function TributesPage(){
   const tributes=await getTributes()
 
