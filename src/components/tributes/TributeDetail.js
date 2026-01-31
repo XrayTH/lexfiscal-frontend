@@ -4,29 +4,62 @@ import {Heading,Text,Stack,Box} from "@chakra-ui/react"
 
 export default function TributeDetail({tribute}){
   return(
-    <Stack spacing={4} py={10}>
-      <Heading>{tribute.name}</Heading>
+    <Stack spacing={6} py={10}>
 
-      <Text><strong>Tipo:</strong> {tribute.type}</Text>
-      <Text><strong>Ámbito:</strong> {tribute.scope}</Text>
+      {/* Identidad del tributo */}
+      <Stack spacing={2}>
+        <Heading>{tribute.name}</Heading>
+        <Text fontSize="sm" color="gray.600">
+          Tipo: {tribute.type} · Ámbito: {tribute.scope}
+        </Text>
+      </Stack>
 
-      <Box/>
+      <Box borderBottom="1px solid" borderColor="gray.200"/>
 
-      <Heading size="md">Definición</Heading>
-      <Text>{tribute.technicalSheet.definition}</Text>
+      {/* Definición */}
+      <Stack spacing={2}>
+        <Heading size="md">Definición</Heading>
+        <Text lineHeight="1.7">
+          {tribute.technicalSheet.definition}
+        </Text>
+      </Stack>
 
-      <Heading size="md">Hecho generador</Heading>
-      <Text>{tribute.technicalSheet.taxableEvent}</Text>
+      {/* Hecho generador */}
+      <Stack spacing={2}>
+        <Heading size="md">Hecho generador</Heading>
+        <Text lineHeight="1.7">
+          {tribute.technicalSheet.taxableEvent}
+        </Text>
+      </Stack>
 
-      <Heading size="md">Sujetos</Heading>
-      <Text><strong>Activo:</strong> {tribute.technicalSheet.subjects.active}</Text>
-      <Text><strong>Pasivo:</strong> {tribute.technicalSheet.subjects.passive}</Text>
+      <Box borderBottom="1px solid" borderColor="gray.200"/>
 
-      <Heading size="md">Base gravable</Heading>
-      <Text>{tribute.technicalSheet.taxBase}</Text>
+      {/* Sujetos */}
+      <Stack spacing={2}>
+        <Heading size="md">Sujetos</Heading>
+        <Box>
+          <Text><strong>Activo:</strong> {tribute.technicalSheet.subjects.active}</Text>
+          <Text><strong>Pasivo:</strong> {tribute.technicalSheet.subjects.passive}</Text>
+        </Box>
+      </Stack>
 
-      <Heading size="md">Tarifa</Heading>
-      <Text>{tribute.technicalSheet.rate}</Text>
+      {/* Base gravable */}
+      <Stack spacing={2}>
+        <Heading size="md">Base gravable</Heading>
+        <Text lineHeight="1.7">
+          {tribute.technicalSheet.taxBase}
+        </Text>
+      </Stack>
+
+      {/* Tarifa */}
+      <Stack spacing={2}>
+        <Heading size="md">Tarifa</Heading>
+        <Text lineHeight="1.7">
+          {tribute.technicalSheet.rate}
+        </Text>
+      </Stack>
+
     </Stack>
   )
 }
+
