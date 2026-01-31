@@ -1,6 +1,4 @@
-import Providers from "./providers"
-import Navbar from "@/components/layout/Navbar"
-import Footer from "@/components/layout/Footer"
+import ClientLayout from "./client-layout"
 
 export const metadata={
   title:"LexFiscal",
@@ -11,11 +9,7 @@ export default function RootLayout({children}){
   return(
     <html lang="es">
       <body>
-        <Providers>
-          <Navbar/>
-          {children}
-          <Footer/>
-        </Providers>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )
