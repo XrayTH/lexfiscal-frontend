@@ -1,15 +1,24 @@
-import {Box,Heading,Text} from "@chakra-ui/react"
+import {Heading,Text,Stack} from "@chakra-ui/react"
+import Container from "@/components/ui/Container"
 
-export default function Home(){
+export default function HomePage(){
   return(
-    <Box p={6}>
-      <Heading>LexFiscal</Heading>
-      <Text mt={2}>
-        Chakra está funcionando correctamente.
-      </Text>
-    </Box>
+    <Container>
+      <Stack spacing={6} py={10}>
+        <Heading size="lg">LexFiscal</Heading>
+        <Text>
+          Plataforma informativa para la consulta estructurada de tributos
+          nacionales en Colombia, con enfoque descriptivo y no interpretativo.
+        </Text>
+        <Text>
+          El contenido presentado no constituye asesoría tributaria ni sustituye
+          fuentes normativas oficiales.
+        </Text>
+      </Stack>
+    </Container>
   )
 }
+
 
 
 

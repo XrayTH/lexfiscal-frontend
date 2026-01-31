@@ -1,0 +1,27 @@
+import {Heading,SimpleGrid,Text} from "@chakra-ui/react"
+import Container from "@/components/ui/Container"
+import {getTributes} from "@/lib/api"
+import TributeCard from "@/components/tributes/TributeCard"
+
+export default async function TributesPage(){
+  const tributes=await getTributes()
+
+  if(!tributes||tributes.length===0){
+    return(
+      <Container>
+        <Text py={10}>No hay tributos disponibles.</Text>
+      </Container>
+    )
+  }
+
+  return(
+    <Container>
+      <Heading size="lg" py={6}>Tributos</Heading>
+      <SimpleGrid columns={{base:1,md:2}} spacing={4}>
+        {tributes.data.map(tribute=>(
+          <TributeCard key={tribute.slug} tribute={tribute}/>
+        ))}
+      </SimpleGrid>
+    </Container>
+  )
+}

@@ -1,7 +1,7 @@
 import createCache from "@emotion/cache"
 
 const emotionCache = createCache({
-  key:"css",
+  key:"chakra",
   prepend:true
 })
 
