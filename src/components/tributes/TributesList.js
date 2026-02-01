@@ -79,7 +79,7 @@ export default function TributesList({ initialPage = 1, initialLimit = 5 }) {
         </Box>
       ) : (
         <>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} gap="10px">
             {data.map((tribute) => (
               <TributeCard key={tribute.slug} tribute={tribute} />
             ))}
