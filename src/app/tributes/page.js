@@ -21,7 +21,7 @@ export default async function TributesPage(){
 
   return(
     <Container>
-      <Heading size="lg" py={6}>Tributos</Heading>
+      <Heading size="xl" fontWeight="bold" borderBottom="1px solid" borderColor="gray.200" textUnderlineOffset="6px" py={6}>Tributos</Heading>
       <SimpleGrid columns={{base:1,md:2}} spacing={4}>
         {tributes.data.map(tribute=>(
           <TributeCard key={tribute.slug} tribute={tribute}/>

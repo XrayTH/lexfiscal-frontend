@@ -4,7 +4,7 @@ import { Box, Heading, Text, Stack, Link } from "@chakra-ui/react"
 import NextLink from "next/link"
 import { motion } from "framer-motion"
 
-const MotionBox = motion(Box)
+const MotionBox = motion.create(Box)
 
 export default function TributeCard({tribute}){
   return(
