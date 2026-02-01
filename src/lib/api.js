@@ -1,26 +1,48 @@
 import {API_BASE_URL,API_ENDPOINTS} from "./constants"
 
-async function fetchAPI(path){
-  const res=await fetch(`${API_BASE_URL}${path}`,{
-    method:"GET",
-    headers:{
-      "Content-Type":"application/json"
-    },
-    cache:"no-store"
-  })
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 
-  if(!res.ok){
-    if(res.status===404){
+async function fetchAPI(path, { retries = 2, retryDelay = 300 } = {}) {
+  const url = `${API_BASE_URL}${path}`
+
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const res = await fetch(url, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store"
+    })
+
+    if (res.ok) {
+      return res.json()
+    }
+
+    if (res.status === 404) {
       return null
     }
+
+    if (res.status === 429 && attempt < retries) {
+      const retryAfter = res.headers.get("Retry-After")
+      const delay = retryAfter ? Number(retryAfter) * 1000 : retryDelay * Math.pow(2, attempt)
+      await sleep(delay)
+      continue
+    }
+
     throw new Error(`API error ${res.status}`)
   }
 
-  return res.json()
+  throw new Error("API error 429 (retries exhausted)")
 }
 
-export async function getTributes(){
-  return fetchAPI(API_ENDPOINTS.tributes)
+export async function getTributes({ page = 1, limit = 20, q } = {}) {
+  const params = new URLSearchParams()
+  if (page) params.set("page", String(page))
+  if (limit) params.set("limit", String(limit))
+  if (q) params.set("q", String(q))
+
+  const query = params.toString() ? `?${params.toString()}` : ""
+  return fetchAPI(`${API_ENDPOINTS.tributes}${query}`)
 }
 
 export async function getTributeBySlug(slug){
@@ -44,4 +66,4 @@ export async function checkHealth({ signal } = {}){
   }catch(e){
     return null
   }
-}    
+}

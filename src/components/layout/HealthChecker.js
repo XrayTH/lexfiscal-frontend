@@ -37,7 +37,7 @@ export default function HealthChecker(){
       if (intervalRef.current) return
       intervalRef.current = setInterval(()=>{
         check()
-      }, 10000)
+      }, 20000)
     } else {
       if (intervalRef.current){
         clearInterval(intervalRef.current)
